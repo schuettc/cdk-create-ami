@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "cdk-create-ami": {
+      "signature": "a3528aea7f0ca72ce3529742c8b58825",
+      "file": true
+    }
+  }
+}
