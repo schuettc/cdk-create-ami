@@ -88,6 +88,8 @@ def create_ami(
         logger.error(error)
         raise RuntimeError(error)
 
+    # Loop witing for image created
+
     try:
         ssm.put_parameter(
             Name="/createAMI/imageId" + uid,
@@ -161,6 +163,17 @@ def stop_instance(instance_id):
     return True
 
 
+def delete_instance(instance_id):
+
+    ec2.terminate_instances(
+        InstanceIds=[
+            instance_id,
+        ],
+    )
+
+    return True
+
+
 def handler(event, context):
     print(event)
     responseData = {}
@@ -171,6 +184,8 @@ def handler(event, context):
         try:
             stop_instance(event["ResourceProperties"]["properties"]["instanceId"])
             responseData["imageId"] = create_ami(uid, **properties)
+            if event["ResourceProperties"]["properties"]["deleteInstance"] == "true":
+                delete_instance(event["ResourceProperties"]["properties"]["instanceId"])
             return {"PhysicalResourceId": uid, "Data": responseData}
         except Exception as e:
             error = {"error": f"Exception thrown: {e}"}
@@ -181,6 +196,10 @@ def handler(event, context):
         return {"PhysicalResourceId": uid, "Data": responseData}
 
     if event["RequestType"] == "Delete":
-        delete_ami(uid)
-        responseData = {"Message": "Update and Delete are no-op. Returning success status."}
+        if event["ResourceProperties"]["properties"]["deleteAmi"] == "true":
+            logger.info("Deleting AMI")
+            responseData["Message"] = "AMI Deleted"
+            delete_ami(uid)
+        else:
+            responseData["Message"] = "AMI Retained"
         return {"Data": responseData}

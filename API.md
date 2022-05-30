@@ -205,6 +205,8 @@ const createAMIProps: CreateAMIProps = { ... }
 | --- | --- | --- |
 | <code><a href="#cdk-create-ami.CreateAMIProps.property.instanceId">instanceId</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdk-create-ami.CreateAMIProps.property.blockDeviceMappings">blockDeviceMappings</a></code> | <code><a href="#cdk-create-ami.BlockDeviceMapping">BlockDeviceMapping</a>[]</code> | *No description.* |
+| <code><a href="#cdk-create-ami.CreateAMIProps.property.deleteAmi">deleteAmi</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#cdk-create-ami.CreateAMIProps.property.deleteInstance">deleteInstance</a></code> | <code>boolean</code> | *No description.* |
 | <code><a href="#cdk-create-ami.CreateAMIProps.property.description">description</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdk-create-ami.CreateAMIProps.property.name">name</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#cdk-create-ami.CreateAMIProps.property.tagSpecifications">tagSpecifications</a></code> | <code><a href="#cdk-create-ami.TagSpecification">TagSpecification</a>[]</code> | *No description.* |
@@ -228,6 +230,26 @@ public readonly blockDeviceMappings: BlockDeviceMapping[];
 ```
 
 - *Type:* <a href="#cdk-create-ami.BlockDeviceMapping">BlockDeviceMapping</a>[]
+
+---
+
+##### `deleteAmi`<sup>Optional</sup> <a name="deleteAmi" id="cdk-create-ami.CreateAMIProps.property.deleteAmi"></a>
+
+```typescript
+public readonly deleteAmi: boolean;
+```
+
+- *Type:* boolean
+
+---
+
+##### `deleteInstance`<sup>Optional</sup> <a name="deleteInstance" id="cdk-create-ami.CreateAMIProps.property.deleteInstance"></a>
+
+```typescript
+public readonly deleteInstance: boolean;
+```
+
+- *Type:* boolean
 
 ---
 

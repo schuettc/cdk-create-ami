@@ -88,6 +88,8 @@ export interface CreateAMIProps {
   readonly name?: string;
   readonly blockDeviceMappings?: Array<BlockDeviceMapping>;
   readonly tagSpecifications?: Array<TagSpecification>;
+  readonly deleteInstance?: boolean;
+  readonly deleteAmi?: boolean;
 }
 
 export interface BlockDeviceMapping {
@@ -132,6 +134,8 @@ export class CreateAMI extends Construct {
       name,
       blockDeviceMappings,
       tagSpecifications,
+      deleteInstance,
+      deleteAmi,
     } = props;
 
     const createAMIRequest = new CreateAMICustomResource(
@@ -147,6 +151,8 @@ export class CreateAMI extends Construct {
           noReboot: false,
           blockDeviceMappings: blockDeviceMappings,
           tagSpecifications: tagSpecifications,
+          deleteInstance: deleteInstance ?? false,
+          deleteAmi: deleteAmi ?? false,
         },
       },
     );
