@@ -8,7 +8,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
-  docgen: true,
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
@@ -30,7 +29,6 @@ const common_exclude = [
   'cdk.context.json',
   'yarn-error.log',
   'dependabot.yml',
-  'API.md',
 ];
 
 project.npmignore.exclude(...common_exclude);
