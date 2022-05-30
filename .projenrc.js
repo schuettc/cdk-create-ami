@@ -20,7 +20,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   autoApproveUpgrades: true,
   name: '@schuettc/cdk-create-ami',
-
+  devDeps: ['yalc@1.0.0-pre.53'],
   repositoryUrl: 'https://github.com/schuettc/cdk-create-ami.git',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 });
