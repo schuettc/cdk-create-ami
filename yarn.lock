@@ -1160,10 +1160,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.24.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.24.0.tgz#d942f967530f089e4e41f965c88a8d275a7cde3f"
-  integrity sha512-icYISk6uddpBDe2csqIpZ0PPo8ryg8Polyxyh9ri6rmRIElOJIkBmTpJc7ORcP9vv9LjFIH6BRV7OltUxpcWUg==
+aws-cdk-lib@2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.25.0.tgz#6014ab5b73b2a3012c8081b9afc8411dcb9832a0"
+  integrity sha512-rcQeQu/lTmi1tg5DwV0gBqJtF73khApfHt9n7BIHkKbUWvCB50lIL1Q1/7cHvTicfQ62UnwFoPWwB0YqQceDVQ==
   dependencies:
     "@balena/dockerignore" "^1.0.2"
     case "1.6.3"
@@ -3838,7 +3838,7 @@ jsii-diff@^1.59.0:
     typescript "~3.9.10"
     yargs "^16.2.0"
 
-jsii-docgen@^7.0.21:
+jsii-docgen@^7.0.22:
   version "7.0.22"
   resolved "https://registry.yarnpkg.com/jsii-docgen/-/jsii-docgen-7.0.22.tgz#d82ae77dd825dd5d91a32b0ac1bcc31891623a22"
   integrity sha512-QqQwNv/4AytGvYhaw5ZZoqRMnG84flZKhILjwyjOJ0CIggyav7AurkngMVvZfna7izUkhgdecjbTdNOkzFsdfA==
