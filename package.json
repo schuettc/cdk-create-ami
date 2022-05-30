@@ -1,5 +1,5 @@
 {
-  "name": "cdk-create-ami",
+  "name": "@schuettc/cdk-create-ami",
   "repository": {
     "type": "git",
     "url": "https://github.com/schuettc/cdk-create-ami.git"
