@@ -37,7 +37,6 @@
   "devDependencies": {
     "@types/jest": "^27.5.1",
     "@types/node": "^14",
-    "@types/prettier": "2.6.0",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "aws-cdk-lib": "2.25.0",
@@ -57,8 +56,7 @@
     "projen": "^0.56.36",
     "standard-version": "^9",
     "ts-jest": "^27",
-    "typescript": "^4.7.2",
-    "yalc": "1.0.0-pre.53"
+    "typescript": "^4.7.2"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.25.0",

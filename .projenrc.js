@@ -8,7 +8,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
-  devDeps: ['yalc@1.0.0-pre.53', '@types/prettier@2.6.0'],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
