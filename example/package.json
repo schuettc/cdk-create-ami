@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "2.25.0",
-    "cdk-create-ami": "@schuettc/cdk-create-ami",
+    "cdk-create-ami": "file:.yalc/cdk-create-ami",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }

@@ -25,6 +25,11 @@ def modify_block_device_mappings(d):
         else:
             if k == "iops" or k == "volumeSize" or k == "throughput":
                 v = int(v)
+            if k == "deleteOnTermination" or k == "encrypted":
+                if v == "true":
+                    v = True
+                else:
+                    v = False
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
     return d
@@ -33,6 +38,7 @@ def modify_block_device_mappings(d):
 def modify_tag_specifications(d):
     for k, v in d.copy().items():
         if isinstance(v, dict):
+            print(f"k: {k} v: {v}")
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
             modify_tag_specifications(v)
@@ -40,6 +46,28 @@ def modify_tag_specifications(d):
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
     return d
+
+
+def modify_tags(d):
+    for k, v in d.copy().items():
+        if isinstance(v, dict):
+            print(f"k: ${k} v: ${v}")
+            d.pop(k)
+            d[f"{k[0].upper() +k[1:]}"] = v
+            modify_tags(v)
+        else:
+            print(f"k: {k} v: {v}")
+            d.pop(k)
+            d[f"{k[0].upper() +k[1:]}"] = v
+    return d
+
+
+def check_ami(image_id):
+    ami_status = ec2.describe_images(ImageIds=[image_id],)["Images"][
+        0
+    ]["State"]
+    print(f"AMI Status: {ami_status}")
+    return ami_status
 
 
 def create_ami(
@@ -63,11 +91,21 @@ def create_ami(
         fixed_block_device_mappings = []
         for mapping in blockDeviceMappings:
             fixed_block_device_mappings.append(modify_block_device_mappings(mapping))
-        params["BlockDeviceMapping"] = fixed_block_device_mappings
+        params["BlockDeviceMappings"] = fixed_block_device_mappings
     if tagSpecifications:
+        print(f"tagSpecifications: {tagSpecifications}")
         fixed_tag_specifications = []
         for tag_specification in tagSpecifications:
-            fixed_tag_specifications.append(modify_tag_specifications(tag_specification))
+            print(f"tag_specification: {tag_specification}")
+            fixed_tag_specification = {}
+            fixed_tag_specification["ResourceType"] = tag_specification["resourceType"]
+            fixed_tags = []
+            for tag in tag_specification["tags"]:
+                print(f"tag: {tag}")
+                fixed_tags.append(modify_tags(tag))
+            fixed_tag_specification["Tags"] = fixed_tags
+
+        fixed_tag_specifications.append(fixed_tag_specification)
         params["TagSpecifications"] = fixed_tag_specifications
 
     if dryRun == "true":
@@ -88,7 +126,12 @@ def create_ami(
         logger.error(error)
         raise RuntimeError(error)
 
-    # Loop witing for image created
+    check_ami_count = 0
+    while check_ami(image_id) != "available":
+        check_ami_count += 1
+        if check_ami_count == 30:
+            raise RuntimeError("AMI did not become available")
+        time.sleep(15)
 
     try:
         ssm.put_parameter(
@@ -103,7 +146,7 @@ def create_ami(
         logger.error(error)
         raise RuntimeError(error)
 
-    return image_id
+    return image_id, name
 
 
 def delete_ami(uid):
@@ -183,7 +226,7 @@ def handler(event, context):
     if event["RequestType"] == "Create":
         try:
             stop_instance(event["ResourceProperties"]["properties"]["instanceId"])
-            responseData["imageId"] = create_ami(uid, **properties)
+            responseData["imageId"], responseData["imageName"] = create_ami(uid, **properties)
             if event["ResourceProperties"]["properties"]["deleteInstance"] == "true":
                 delete_instance(event["ResourceProperties"]["properties"]["instanceId"])
             return {"PhysicalResourceId": uid, "Data": responseData}

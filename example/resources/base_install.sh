@@ -7,5 +7,5 @@ TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metad
 LOCAL_HOSTNAME=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/public-hostname )
 INSTANCE_ID=$( curl -H "X-aws-ec2-metadata-token: $TOKEN" -v http://169.254.169.254/latest/meta-data/instance-id )
 
-echo $LOCAL_HOSTNAME >> /home/ec2-user/config.txt
-echo $INSTANCE_ID >> /home/ec2-user/config.txt
+echo "AMI Hostname: $LOCAL_HOSTNAME" >> /home/ec2-user/config.txt
+echo "AMI InstanceId: $INSTANCE_ID" >> /home/ec2-user/config.txt

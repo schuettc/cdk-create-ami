@@ -91,7 +91,7 @@ export class CreateAMICustomResource extends Construct {
       handler: 'index.handler',
       architecture: lambda.Architecture.ARM_64,
       role: pstnCustomResourceRole,
-      timeout: cdk.Duration.minutes(1),
+      timeout: cdk.Duration.minutes(15),
     });
 
     return fn;
