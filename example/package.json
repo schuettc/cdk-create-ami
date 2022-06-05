@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "@types/node": "17.0.36",
-    "aws-cdk": "2.25.0",
+    "aws-cdk-lib": "^2.27.0",
     "ts-node": "^10.8.0",
     "typescript": "~4.7.2"
   },
   "dependencies": {
-    "aws-cdk-lib": "2.25.0",
+    "aws-cdk": "^2.27.0",
     "cdk-create-ami": "file:.yalc/cdk-create-ami",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
