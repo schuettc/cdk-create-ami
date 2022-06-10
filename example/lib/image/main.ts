@@ -1,8 +1,7 @@
-import { Stack, CfnOutput, Names } from 'aws-cdk-lib';
+import { Stack, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { VPC, BaseInstance } from '.';
 import * as ami from 'cdk-create-ami';
-import * as ssm from 'aws-cdk-lib/aws-ssm';
 
 export class AMIExample extends Stack {
   constructor(scope: Construct, id: string) {

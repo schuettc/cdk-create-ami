@@ -1,10 +1,12 @@
 const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
-  author: 'Court Schuett',
-  authorAddress: 'schuettc@amazon.com',
+  author: 'Amazon Web Services',
+  authorAddress: 'https://aws.amazon.com',
   cdkVersion: '2.27.0',
   defaultReleaseBranch: 'main',
+  keywords: ['cdk', 'ec2', 'ami'],
   releaseToNpm: true,
+  workflowNodeVersion: '16.13.1',
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
@@ -19,8 +21,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
     allowedUsernames: ['schuettc', 'cdklabs-automation'],
   },
   autoApproveUpgrades: true,
+  python: {
+    distName: 'cdk-create-ami',
+    module: 'cdk_create_ami',
+  },
   name: 'cdk-create-ami',
-  devDeps: ['yalc@1.0.0-pre.53'],
+  devDeps: ['yalc@1.0.0-pre.53', '@types/prettier@2.6.0'],
   repositoryUrl: 'https://github.com/schuettc/cdk-create-ami.git',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 });
@@ -29,7 +35,6 @@ const common_exclude = [
   'cdk.context.json',
   'yarn-error.log',
   'dependabot.yml',
-  'API.md',
 ];
 
 project.npmignore.exclude(...common_exclude);

@@ -8,7 +8,9 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "ami": "yarn && yarn run build && yarn cdk bootstrap && yarn cdk deploy AMIExample",
+    "instance": "yarn && yarn run build && yarn cdk bootstrap && yarn cdk deploy InstanceExample --context $npm_config_imageName"
   },
   "devDependencies": {
     "@types/node": "17.0.36",
