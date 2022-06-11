@@ -8,17 +8,17 @@ interface NewInstanceProps {
   vpc: ec2.Vpc;
   securityGroup: ec2.SecurityGroup;
   ec2Role: iam.Role;
-  imageName: string;
+  imageId: string;
 }
 export class NewInstance extends Construct {
   public instanceId: string;
 
   constructor(scope: Construct, id: string, props: NewInstanceProps) {
     super(scope, id);
-    console.log(props.imageName);
-    const customAmi = ec2.MachineImage.lookup({
-      name: props.imageName,
-    });
+    const customAmi = new ec2.GenericSSMParameterImage(
+      '/createAMI/' + props.imageId,
+      ec2.OperatingSystemType.LINUX,
+    );
 
     const ec2Instance = new ec2.Instance(this, 'Instance', {
       vpc: props.vpc,

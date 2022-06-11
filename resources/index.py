@@ -135,11 +135,12 @@ def create_ami(
 
     try:
         ssm.put_parameter(
-            Name="/createAMI/imageId" + uid,
-            Description="imageId",
+            Name="/createAMI/" + image_id,
+            Description="imageId for " + uid,
             Overwrite=True,
             Value=image_id,
             Type="String",
+            DataType="aws:ec2:image",
         )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}

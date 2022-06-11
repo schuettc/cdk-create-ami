@@ -6,15 +6,16 @@ export class InstanceExample extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
-    const imageName = this.node.tryGetContext('imageName');
+    const imageId = this.node.tryGetContext('imageId');
 
     const vpc = new VPC(this, 'VPC');
     const newInstance = new NewInstance(this, 'Instance', {
       vpc: vpc.vpc,
       securityGroup: vpc.securityGroup,
       ec2Role: vpc.ec2Role,
-      imageName: imageName,
+      imageId: imageId,
     });
+
     new CfnOutput(this, 'newInstanceId', { value: newInstance.instanceId });
   }
 }

@@ -107,15 +107,49 @@ echo "AMI InstanceId: $INSTANCE_ID" >> /home/ec2-user/config.txt
 
 This will result in a file: `/home/ec2-user/config.txt` that contains the base instance information. This fille will be retained in the AMI.
 
+```
+AMI Hostname: ec2-54-152-127-245.compute-1.amazonaws.com
+AMI InstanceId: i-002aeb6cdde92c9b5
+```
+
+#### SSM
+
+The AMI information will be stored in AWS Systems Manager - Parameter Store
+
+![SSM](images/SSM.png)
+
 ### Instance Example
 
 Once the AMI has been created, that AMI can be used to create a new Instance that has been pre-configured.
 
 ```bash
-yarn instance imageName=IMAGENAME
+yarn instance imageId=IMAGEID
 ```
 
-The IMAGENAME to be used is provided as output from the AMI Example Stack.
+The IMAGEID to be used is provided as output from the AMI Example Stack.
+
+This AMI Image ID is retrieved by the CDK:
+
+```ts
+const customAmi = new ec2.GenericSSMParameterImage(
+  '/createAMI/' + props.imageId,
+  ec2.OperatingSystemType.LINUX,
+);
+```
+
+This AMI Image ID is used to create the new Instance:
+
+```ts
+const ec2Instance = new ec2.Instance(this, 'Instance', {
+  vpc: props.vpc,
+  instanceType: ec2.InstanceType.of(
+    ec2.InstanceClass.T4G,
+    ec2.InstanceSize.MEDIUM,
+  ),
+  machineImage: customAmi,
+  // More Instance configuration here
+});
+```
 
 This instance contains a [cloud-init script](example/resources/new_install.sh):
 
@@ -131,6 +165,13 @@ echo "New Instance InstanceId: $INSTANCE_ID" >> /home/ec2-user/config.txt
 ```
 
 Because the Instance used to create the AMI has already updated and installed packages, these do not need to be run again. Instead, the new Instance Hostname and InstanceId will be copied to the existing `/home/ec2-user/config.txt` file.
+
+```text
+AMI Hostname: ec2-54-152-127-245.compute-1.amazonaws.com
+AMI InstanceId: i-002aeb6cdde92c9b5
+New Instance Hostname: ec2-54-242-5-47.compute-1.amazonaws.com
+New Instance InstanceId: i-0e67014a77d5d1995
+```
 
 ## Contributing
 
