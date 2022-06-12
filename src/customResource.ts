@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 import * as path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { CustomResource } from 'aws-cdk-lib';
