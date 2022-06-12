@@ -31,8 +31,8 @@
     "projen": "npx projen"
   },
   "author": {
-    "name": "Amazon Web Services",
-    "url": "https://aws.amazon.com",
+    "name": "Court Schuett",
+    "url": "https://subaud.io",
     "organization": false
   },
   "devDependencies": {

@@ -62,11 +62,7 @@ Returns a string representation of this construct.
 
 ---
 
-<<<<<<< HEAD
 ##### `isConstruct` <a name="isConstruct" id="cdk-create-ami.CreateAMI.isConstruct"></a>
-=======
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-create-ami.CreateAMI.isConstruct"></a>
->>>>>>> ddb9308c6c9d373b96958521d5071df11840dfbe
 
 ```typescript
 import { CreateAMI } from 'cdk-create-ami'
@@ -76,7 +72,6 @@ CreateAMI.isConstruct(x: any)
 
 Checks if `x` is a construct.
 
-<<<<<<< HEAD
 Use this method instead of `instanceof` to properly detect `Construct`
 instances, even when the construct library is symlinked.
 
@@ -91,8 +86,6 @@ library can be accidentally installed, and `instanceof` will behave
 unpredictably. It is safest to avoid using `instanceof`, and using
 this type-testing method instead.
 
-=======
->>>>>>> ddb9308c6c9d373b96958521d5071df11840dfbe
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-create-ami.CreateAMI.isConstruct.parameter.x"></a>
 
 - *Type:* any
