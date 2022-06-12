@@ -36,6 +36,7 @@ const common_exclude = [
   'cdk.context.json',
   'yarn-error.log',
   'dependabot.yml',
+  'API.md',
 ];
 
 project.npmignore.exclude(...common_exclude);
