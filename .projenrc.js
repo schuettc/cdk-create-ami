@@ -16,6 +16,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
       labels: ['auto-approve', 'auto-merge'],
     },
   },
+  docgen: true,
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
     allowedUsernames: ['schuettc', 'cdklabs-automation'],
