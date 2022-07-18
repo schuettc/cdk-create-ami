@@ -67,7 +67,7 @@ This will take an already created [Instance](https://docs.aws.amazon.com/AWSEC2/
 The associated exmaple includes two Stacks that can be created.
 
 - AMIExample - Deploys Instance and creates AMI from Instance
-- InstanceExmaple - Deplotys Instance from previously created AMI
+- InstanceExample - Deploys Instance from previously created AMI
 
 ### AMI Example
 
@@ -89,7 +89,7 @@ const baseInstance = new BaseInstance(this, 'Instance', {
 });
 ```
 
-The exmaple will create a VPC and Instance to be used to create the AMI. This instance contains a [cloud-init script](example/resources/base_install.sh):
+The example will create a VPC and Instance to be used to create the AMI. This instance contains a [cloud-init script](example/resources/base_install.sh):
 
 ```bash
 HOMEDIR=/home/ec2-user
@@ -105,7 +105,7 @@ echo "AMI Hostname: $LOCAL_HOSTNAME" >> /home/ec2-user/config.txt
 echo "AMI InstanceId: $INSTANCE_ID" >> /home/ec2-user/config.txt
 ```
 
-This will result in a file: `/home/ec2-user/config.txt` that contains the base instance information. This fille will be retained in the AMI.
+This will result in a file: `/home/ec2-user/config.txt` that contains the base instance information. This file will be retained in the AMI.
 
 ```
 AMI Hostname: ec2-54-152-127-245.compute-1.amazonaws.com
