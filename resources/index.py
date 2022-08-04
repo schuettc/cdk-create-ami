@@ -129,7 +129,7 @@ def create_ami(
     check_ami_count = 0
     while check_ami(image_id) != "available":
         check_ami_count += 1
-        if check_ami_count == 30:
+        if check_ami_count == 45:
             raise RuntimeError("AMI did not become available")
         time.sleep(15)
 
