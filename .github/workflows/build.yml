@@ -117,11 +117,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.13.1
-<<<<<<< HEAD
       - uses: actions/setup-python@v4
-=======
-      - uses: actions/setup-python@v3
->>>>>>> c215f314ddf876745817be126d858091c4d8e0e0
         with:
           python-version: 3.x
       - name: Download build artifacts
