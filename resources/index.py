@@ -135,7 +135,7 @@ def create_ami(
 
     try:
         ssm.put_parameter(
-            Name="/createAMI/" + image_id,
+            Name="/createAMI/imageId/" + uid,
             Description="imageId for " + uid,
             Overwrite=True,
             Value=image_id,
@@ -153,14 +153,14 @@ def create_ami(
 def delete_ami(uid):
     logger.info(f"Deleting AMI: {uid}")
     try:
-        image_id_to_delete = ssm.get_parameter(Name="/createAMI/imageId" + str(uid))["Parameter"]["Value"]
+        image_id_to_delete = ssm.get_parameter(Name="/createAMI/imageId/" + str(uid))["Parameter"]["Value"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)
         raise RuntimeError(error)
 
     try:
-        ssm.delete_parameter(Name="/createAMI/imageId" + str(uid))
+        ssm.delete_parameter(Name="/createAMI/imageId/" + str(uid))
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

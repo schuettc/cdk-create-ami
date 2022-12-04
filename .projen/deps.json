@@ -80,7 +80,11 @@
     },
     {
       "name": "npm-check-updates",
+<<<<<<< HEAD
       "version": "^16",
+=======
+      "version": "^15",
+>>>>>>> c215f314ddf876745817be126d858091c4d8e0e0
       "type": "build"
     },
     {
