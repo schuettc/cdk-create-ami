@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "aws-cdk": "^2.27.0",
-    "cdk-create-ami": "file:.yalc/cdk-create-ami",
+    "cdk-create-ami": "^0.0.191",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }
