@@ -66,7 +66,7 @@ export class CreateAMICustomResource extends Construct {
               }),
               new iam.PolicyStatement({
                 resources: [
-                  `arn:aws:ssm:${stack.region}:${stack.account}:parameter/createAMI/*`,
+                  `arn:${stack.partition}:ssm:${stack.region}:${stack.account}:parameter/createAMI/*`,
                 ],
                 actions: [
                   'ssm:PutParameter',
